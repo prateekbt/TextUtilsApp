@@ -35,9 +35,9 @@ export default function TextForm(props) {
     <>
     <div className='container'>
          <h1>{props.heading}</h1>
-        <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label"></label>
-        <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="10"></textarea>
+        <div className="mb-3">
+        <label htmlFor="exampleFormControlTextarea1" className="form-label"></label>
+        <textarea className="form-control" value={text} onChange={handleOnChange}  id="exampleFormControlTextarea1" rows="10"></textarea>
         </div>
         <button className="btn btn-primary mx-2" onClick={handleUpClick}>Convert to UpperCase</button>
         <button className="btn btn-primary mx-2" onClick={handleLoClick}>Convert to LowerCase</button>
@@ -45,11 +45,11 @@ export default function TextForm(props) {
         <button className="btn btn-danger mx-2" onClick={handleClearClick}>Clear</button>
     </div>
     <div className="container  my-3">
-      <h2>Your text summary</h2>
+      <h2>YOUR TEXT SUMMARY</h2>
       <p>{text.split(/\s+/).filter(word => word !== '').length} words and {text.length} characters</p>
       <p>{0.008*text.split(/\s+/).filter(word => word !== '').length}minutes to read</p>
-      <h2>Preview</h2>
-      <p>{text}</p>
+      <h2>PREVIEW</h2>
+      <p>{text.length>0?text:"Enter your text"}</p>
     </div>
     </>
   )

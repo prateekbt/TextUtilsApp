@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+/*use rfc shortcut to skeletal body */
 export default function About() {
     
     const [mystyle, setMyStyle] = useState(    
@@ -10,12 +10,12 @@ export default function About() {
     const [btn, setBtnStyle] = useState( "Enable Dark Mode")
 
     const toggleStyle = ()=>{
-        if(mystyle.color == '#35374B'){
+        if(mystyle.color === '#35374B'){
             setMyStyle({
                 color: 'white',
                 backgroundColor: '#35374B'
               })
-              setBtnStyle("Enable Ligth Mode")
+              setBtnStyle("Enable Light Mode")
         }
         else{
             setMyStyle({
@@ -27,11 +27,11 @@ export default function About() {
     }
 
   return (
-         <div classNameName='container' style={mystyle}>
-        <h2>About us</h2>
+         <div className='container' style={mystyle}>
+        <h2>ABOUT US</h2>
         <hr/>
         <div className="accordion accordion-flush" id="accordionFlushExample">
-  <div className="accordion-item">
+        <div className="accordion-item">
     <h2 className="accordion-header">
       <button className="accordion-button collapsed" style={mystyle} type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
         Company Profile
