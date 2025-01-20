@@ -1,15 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Website</title>
-  <link rel="stylesheet" href="./style.css">
-  <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothing Store</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        header nav a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            margin: 1rem;
+            display: inline-block;
+            width: 200px;
+            text-align: left;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+
+        .product h3 {
+            font-size: 1.2rem;
+        }
+
+        .product button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #218838;
+        }
+
+        .cart {
+            margin-top: 2rem;
+            text-align: left;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cart-item {
+            border-bottom: 1px solid #ddd;
+            padding: 0.5rem 0;
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <h1>Welcome to My TextUtils Website</h1>
-  </main>
-  <script src="index.js"></script>
+    <header>
+        <div class="logo">Clothing Store</div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#products">Products</a>
+            <a href="#cart">Cart</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Welcome to Our Clothing Store</h1>
+        <p>Find the best clothes for every season!</p>
+
+        <section id="products">
+            <h2>Our Products</h2>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="T-Shirt">
+                <h3>Classic T-Shirt</h3>
+                <p>Price: $20</p>
+                <button onclick="addToCart('Classic T-Shirt', 20)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Hoodie">
+                <h3>Cozy Hoodie</h3>
+                <p>Price: $50</p>
+                <button onclick="addToCart('Cozy Hoodie', 50)">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://via.placeholder.com/200" alt="Jeans">
+                <h3>Denim Jeans</h3>
+                <p>Price: $40</p>
+                <button onclick="addToCart('Denim Jeans', 40)">Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="cart">
+            <h2>Your Cart</h2>
+            <div class="cart" id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const cart = [];
+
+        function addToCart(productName, productPrice) {
+            cart.push({ name: productName, price: productPrice });
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            let cartHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                cartHTML += `
+                    <div class="cart-item">
+                        <span>${item.name} - $${item.price}</span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+            });
+
+            cartHTML += `<h3>Total: $${total}</h3>`;
+            cartContainer.innerHTML = cartHTML;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            renderCart();
+        }
+    </script>
 </body>
+</html>
